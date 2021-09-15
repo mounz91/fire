@@ -54,7 +54,7 @@ class FireSpreadTest {
         //GIVEN
         Pointer pointer = new Pointer();
         pointer.setState(BoxState.FIRE);
-        pointer.setPositionBeforeFireMovement(initialPosition);
+        pointer.setPosition(initialPosition);
 
         //WHEN
         fireMove.move(board, pointer, Direction.RIGHT);
@@ -70,7 +70,7 @@ class FireSpreadTest {
         //GIVEN
         Pointer pointer = new Pointer();
         pointer.setState(BoxState.FIRE);
-        pointer.setPositionBeforeFireMovement(initialPosition);
+        pointer.setPosition(initialPosition);
         //WHEN
         fireMove.move(board, pointer, Direction.LEFT);
 
@@ -88,7 +88,7 @@ class FireSpreadTest {
         //GIVEN
         Pointer pointer = new Pointer();
         pointer.setState(BoxState.FIRE);
-        pointer.setPositionBeforeFireMovement(initialPosition);
+        pointer.setPosition(initialPosition);
         //WHEN
         fireMove.move(board, pointer, Direction.UP);
 
@@ -104,7 +104,7 @@ class FireSpreadTest {
         //GIVEN
         Pointer pointer = new Pointer();
         pointer.setState(BoxState.FIRE);
-        pointer.setPositionBeforeFireMovement(initialPosition);
+        pointer.setPosition(initialPosition);
 
         //WHEN
         fireMove.move(board, pointer, Direction.DOWN);
@@ -123,7 +123,7 @@ class FireSpreadTest {
         //GIVEN
         Pointer pointer = new Pointer();
         pointer.setState(BoxState.FIRE);
-        pointer.setPositionBeforeFireMovement(initialPosition);
+        pointer.setPosition(initialPosition);
 
         //WHEN
         Direction direction = new ChooseDirectionRandomly().choose(board, pointer);
@@ -134,4 +134,22 @@ class FireSpreadTest {
 
     }
 
+    @Test
+    void when_ash_is_on_the_right_do_not_move_to_right() {
+        //GIVEN
+        Pointer pointer = new Pointer();
+        pointer.setState(BoxState.FIRE);
+        pointer.setPosition(initialPosition);
+
+        Point ashPosition = new Point(3, 2);
+
+        board.replace(ashPosition, BoxState.ASH);
+
+        //WHEN
+        Direction direction = new ChooseDirectionRandomly().choose(board, pointer);
+
+        //THEN
+
+
+    }
 }

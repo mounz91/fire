@@ -12,7 +12,7 @@ public class FireSimpleMovement implements FireMove {
 
     @Override
     public void move(HashMap<Point, BoxState> board, Pointer box, Direction movement) {
-        Point position = box.getPositionBeforeFireMovement();
+        Point position = box.getPosition();
         Point newPosition;
 
         if (movement.equals(Direction.RIGHT)) {

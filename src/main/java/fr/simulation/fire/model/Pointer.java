@@ -4,7 +4,7 @@ import java.awt.*;
 
 public class Pointer {
 
-    private Point positionBeforeFireMovement;
+    private Point position;
     private Point positionAfterFireMovement;
     private BoxState state;
 
@@ -16,12 +16,12 @@ public class Pointer {
         this.state = state;
     }
 
-    public Point getPositionBeforeFireMovement() {
-        return positionBeforeFireMovement;
+    public Point getPosition() {
+        return position;
     }
 
-    public void setPositionBeforeFireMovement(Point positionBeforeFireMovement) {
-        this.positionBeforeFireMovement = positionBeforeFireMovement;
+    public void setPosition(Point position) {
+        this.position = position;
     }
 
     public Point getPositionAfterFireMovement() {
