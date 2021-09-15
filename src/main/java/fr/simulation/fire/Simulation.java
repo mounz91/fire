@@ -16,9 +16,9 @@ public class Simulation {
 
     public void run(int height, int length, Pointer pointer) throws IOException {
         HashMap<Point, BoxState> board = new HashMap<>();
-        Direction direction = new ChooseDirectionRandomly().choose();
-
         new BoardBuilder().build(board, length, height);
+
+        Direction direction = new ChooseDirectionRandomly().choose(board, pointer);
         new FireSimpleMovement().move(board, pointer, direction);
         new FireFileWriterImpl().write(board);
 
