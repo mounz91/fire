@@ -1,14 +1,19 @@
 import fr.simulation.fire.model.BoxState;
-import fr.simulation.fire.model.MovementDirection;
+import fr.simulation.fire.model.Direction;
 import fr.simulation.fire.model.Pointer;
+import fr.simulation.fire.service.ChooseDirection;
 import fr.simulation.fire.service.impl.BoardBuilder;
 import fr.simulation.fire.service.FireMove;
+import fr.simulation.fire.service.impl.ChooseDirectionRandomly;
 import fr.simulation.fire.service.impl.FireSimpleMovement;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.awt.*;
+import java.io.StringWriter;
+import java.util.EnumSet;
 import java.util.HashMap;
+import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -55,7 +60,7 @@ class FireSpreadTest {
         pointer.setPositionBeforeFireMovement(initialPosition);
 
         //WHEN
-        fireMove.move(board, pointer, MovementDirection.RIGHT);
+        fireMove.move(board, pointer, Direction.RIGHT);
 
         //THEN
         assertThat(board.get(initialPosition)).isEqualTo(BoxState.ASH);
@@ -70,7 +75,7 @@ class FireSpreadTest {
         pointer.setState(BoxState.FIRE);
         pointer.setPositionBeforeFireMovement(initialPosition);
         //WHEN
-        fireMove.move(board, pointer, MovementDirection.LEFT);
+        fireMove.move(board, pointer, Direction.LEFT);
 
         //THEN
         BoxState boxState = board.get(initialPosition);
@@ -88,7 +93,7 @@ class FireSpreadTest {
         pointer.setState(BoxState.FIRE);
         pointer.setPositionBeforeFireMovement(initialPosition);
         //WHEN
-        fireMove.move(board, pointer, MovementDirection.UP);
+        fireMove.move(board, pointer, Direction.UP);
 
         //THEN
         BoxState boxState = board.get(initialPosition);
@@ -105,7 +110,7 @@ class FireSpreadTest {
         pointer.setPositionBeforeFireMovement(initialPosition);
 
         //WHEN
-        fireMove.move(board, pointer, MovementDirection.DOWN);
+        fireMove.move(board, pointer, Direction.DOWN);
 
         //THEN
         BoxState boxState = board.get(initialPosition);
@@ -114,5 +119,18 @@ class FireSpreadTest {
         assertThat(pointer.getPositionAfterFireMovement()).isEqualTo(new Point(2, 1));
     }
 
+    @Test
+    void randomly_chosen_direction_for_fire() {
+        //GIVEN
+        EnumSet<Direction> directions = EnumSet.allOf(Direction.class);
+
+        //WHEN
+        Direction direction = new ChooseDirectionRandomly().choose();
+
+        //THEN
+
+        assertThat(directions).contains(direction);
+
+    }
 
 }
